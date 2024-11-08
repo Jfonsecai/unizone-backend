@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework', #--> Nuevo
+    'rest_framework_simplejwt', #--> Nuevo
     'apps.users',
     'apps.products',
 ]
@@ -131,3 +133,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #Login
 AUTH_USER_MODEL = 'users.User'
+
+
+# Configurar DRF para usar JWT como método de autenticación
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
