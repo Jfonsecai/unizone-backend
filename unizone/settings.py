@@ -57,7 +57,10 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
 ]
-
+# Permitir solicitudes de origen cruzado (CORS)
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",  # Agrega la URL de tu frontend
+]
 ROOT_URLCONF = 'unizone.urls'
 
 TEMPLATES = [
