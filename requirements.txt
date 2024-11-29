@@ -9,3 +9,4 @@ crispy-tailwind==1.0.3
 djangorestframework==3.15.2
 psycopg2-binary==2.9.9
 djrestframework-simplejwt==1.22.0
+setuptools==75.6.0
