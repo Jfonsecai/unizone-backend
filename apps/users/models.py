@@ -4,6 +4,14 @@ from django.contrib.auth.models import AbstractUser, User
 # Create your models here.
         
 class User(AbstractUser):
+    ADMIN = 'admin'
+    BUYER = 'buyer'
+    ROLE_CHOICES = (
+        (ADMIN, 'Administrador'),
+        (BUYER, 'Comprador'),
+    )
+    role = models.CharField(max_length=10, choices=ROLE_CHOICES, default=BUYER)
+
     phone_number = models.PositiveBigIntegerField(
         unique=False,blank=False,null=False,
         validators=[
