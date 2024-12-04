@@ -57,6 +57,7 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
 ]
+
 # Permitir solicitudes de origen cruzado (CORS)
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",  # Agrega la URL de tu frontend
@@ -148,3 +149,13 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
 }
+
+# Para simular correos y verlos en consola
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# Necesario modificarlo antes de enviar a producción para usar un servidor SMPT real
+# EMAIL_HOST = 'smtp.mailtrap.io'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = 'your_mailtrap_username'
+# EMAIL_HOST_PASSWORD = 'your_mailtrap_password'
+# DEFAULT_FROM_EMAIL = 'your_email@example.com'
