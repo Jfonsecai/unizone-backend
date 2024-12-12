@@ -10,4 +10,4 @@ class Product(models.Model):
     )
 
     def __str__(self):
-        return f"Producto: {self.name} {self.price}" 
+        return f"Producto: {self.name} {self.price:.2f}" 
