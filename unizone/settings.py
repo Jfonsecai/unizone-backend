@@ -26,9 +26,12 @@ SECRET_KEY = 'django-insecure-8r9y29quj$km)+^7gbvy)b_mod%d*yzsymak#-agthorte5u7+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+CSRF_TRUSTED_ORIGINS = ['http://localhost:5173',"http://127.0.0.1:5173"]  # Agrega tu frontend como origen confiable
 
 ALLOWED_HOSTS = []
-
+SIMPLE_JWT = {
+    'USER_ID_FIELD': 'username',  # Aquí indicamos que se use 'username' en lugar de 'id'
+}
 
 # Application definition
 
@@ -50,19 +53,21 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.common.CommonMiddleware',
 ]
 
 # Permitir solicitudes de origen cruzado (CORS)
+CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",  # Agrega la URL de tu frontend
+    "http://127.0.0.1:5173",  
 ]
+
 ROOT_URLCONF = 'unizone.urls'
 
 TEMPLATES = [

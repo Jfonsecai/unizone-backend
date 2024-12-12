@@ -30,8 +30,19 @@ class UserRegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = [
-            'username', 'first_name', 'last_name', 'email', 'dni', 'phone_number',
-            'password', 'role', 'street', 'city', 'state', 'country' ]
+            'username', 'first_name', 'last_name', 'dni', 'phone_number', 'email',
+            'password', 'role', 'street', 'city', 'state', 'country'
+        ]
+        
+    def validate_username(self, value):
+        if User.objects.filter(username=value).exists():
+            raise serializers.ValidationError("Este nombre de usuario ya está en uso.")
+        return value
+
+    def validate_email(self, value):
+        if User.objects.filter(email=value).exists():
+            raise serializers.ValidationError("Este correo electrónico ya está en uso.")
+        return value
 
     def create(self, validated_data):
         user = User(
@@ -58,6 +69,5 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     def get_token(cls, user):
         token = super().get_token(user)
         token['username'] = user.username
-        token['user_id'] = user.id # Opcional: agregar información adicional al token
         token['role'] = user.role # Se pasa el rol del usuario para que el front sepa dónde redireccionarlo
         return token
