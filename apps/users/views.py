@@ -74,4 +74,17 @@ class PasswordResetConfirmView(APIView):
             return Response({'message': 'Password successfully reset.'}, status=status.HTTP_200_OK)
         else:
             raise ValidationError('Invalid or expired token.')
+class CustomTokenObtainPairView(TokenObtainPairView):
+    serializer_class = CustomTokenObtainPairSerializer
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        token = serializer.validated_data
+        return Response({
+            'access': token['access'],  # El token de acceso
+            'refresh': token['refresh'],  # El token de refresco
+            'username': token['username'],  # Nombre de usuario
+            'role': token['role'],  # Rol del usuario
+        })
 
