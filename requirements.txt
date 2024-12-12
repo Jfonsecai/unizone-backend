@@ -11,3 +11,4 @@ psycopg2-binary==2.9.9
 djrestframework-simplejwt==1.22.0
 setuptools==75.6.0
 django-countries==7.5
+dj_database_url==2.3.0

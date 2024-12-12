@@ -35,7 +35,7 @@ class UserRegisterSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         user = User(
-           username=validated_data['username'],
+            username=validated_data['username'],
             first_name=validated_data['first_name'],
             last_name=validated_data['last_name'],
             dni=validated_data['dni'],
@@ -58,6 +58,6 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     def get_token(cls, user):
         token = super().get_token(user)
         token['username'] = user.username
-        token['user_id'] = user.id # Opcional: agregar información adicional al token
+        #token['user_id'] = user.id # Opcional: agregar información adicional al token
         token['role'] = user.role # Se pasa el rol del usuario para que el front sepa dónde redireccionarlo
         return token

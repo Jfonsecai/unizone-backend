@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -88,14 +89,15 @@ WSGI_APPLICATION = 'unizone.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'unizone',
-        'USER': 'postgres',
-        'PASSWORD': '12345',
-        'HOST': 'localhost',
-        'PORT': '5432', 
-    }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #     'NAME': 'unizone',
+    #     'USER': 'postgres',
+    #     'PASSWORD': '12345',
+    #     'HOST': 'localhost',
+    #     'PORT': '5432', 
+    # }
+   'default': dj_database_url.parse('postgresql://postgres:OiEaISpstHmSRxsVozKXgumZFRdKQRVh@junction.proxy.rlwy.net:40808/railway', conn_max_age=600) 
 }
 
 
