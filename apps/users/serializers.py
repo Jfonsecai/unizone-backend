@@ -71,3 +71,9 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         token['username'] = user.username
         token['role'] = user.role # Se pasa el rol del usuario para que el front sepa dónde redireccionarlo
         return token
+    def validate(self, attrs):
+        data = super().validate(attrs)
+        # Incluye los campos personalizados en la respuesta del serializer
+        data['username'] = self.user.username
+        data['role'] = self.user.role  # Ajusta según tu modelo
+        return data
