@@ -29,17 +29,23 @@ class UserRegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['username', 'first_name', 'last_name', 'email', 'dni', 'phone_number', 'password', 'role']
+        fields = [
+            'username', 'first_name', 'last_name', 'email', 'dni', 'phone_number',
+            'password', 'role', 'street', 'city', 'state', 'country' ]
 
     def create(self, validated_data):
         user = User(
-            username=validated_data['username'],
+           username=validated_data['username'],
             first_name=validated_data['first_name'],
             last_name=validated_data['last_name'],
-            email=validated_data['email'],
             dni=validated_data['dni'],
             phone_number=validated_data['phone_number'],
-            role=validated_data.get('role', User.BUYER)  # Si no se pasa el rol, por defecto será 'buyer'
+            email=validated_data['email'],
+            street=validated_data.get('street'),
+            city=validated_data.get('city'),
+            state=validated_data.get('state'),
+            country=validated_data.get('country'),
+            role=validated_data.get('role', User.BUYER) # Si no se pasa el rol, por defecto será 'buyer'
         )
         user.set_password(validated_data['password'])  # Guarda la contraseña de forma segura
         user.save()

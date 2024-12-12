@@ -1,6 +1,8 @@
 from django.db import models
 from django.core.validators import RegexValidator
 from django.contrib.auth.models import AbstractUser, User
+from django_countries.fields import CountryField
+
 # Create your models here.
         
 class User(AbstractUser):
@@ -33,6 +35,13 @@ class User(AbstractUser):
             )
         ],
         verbose_name='Cédula ciudadania')
+    street = models.CharField(max_length=255, verbose_name="Calle", blank=True, null=True)
+    city = models.CharField(max_length=100, verbose_name="Ciudad", blank=True, null=True)
+    state = models.CharField(max_length=100, verbose_name="Departamento", blank=True, null=True)
+    country = CountryField(verbose_name="País", blank=True, null=True)
+    username = models.CharField(
+        max_length=150, unique=True, primary_key=True, verbose_name='Nombre de usuario'
+    ) 
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['first_name','last_name','email','dni','phone_number']
@@ -41,7 +50,7 @@ class User(AbstractUser):
         db_table = 'USER'
         verbose_name = 'Usuario'
         verbose_name_plural = 'Usuarios'
-        ordering = ['id']
+        ordering = ['username']
 
 def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         self.first_name = self.first_name.upper()

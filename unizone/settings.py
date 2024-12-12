@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework', #--> Nuevo
     'rest_framework_simplejwt', #--> Nuevo
+    'django_countries',
     'apps.users',
     'apps.products',
 ]
