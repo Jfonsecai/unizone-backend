@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import RegisterAPIView, CustomTokenObtainPairView
-from django.contrib.auth import views as auth_views
+from .views import PasswordResetRequestView, RegisterAPIView, CustomTokenObtainPairView, PasswordResetConfirmView
+#from django.contrib.auth import views as auth_views
 
 
 urlpatterns = [
@@ -8,8 +8,6 @@ urlpatterns = [
     path('api/login/', CustomTokenObtainPairView.as_view(), name='api_login'),
      path('api/token/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
     # Vistas para el reestablecimiento de contraseña
-    path('password_reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),
-    path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
-    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
-    path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
+    path('api/password-reset/', PasswordResetRequestView.as_view(), name='password-reset-request'),
+    path('api/password-reset/confirm/', PasswordResetConfirmView.as_view(), name='password-reset-confirm'),
 ]

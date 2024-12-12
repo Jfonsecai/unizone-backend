@@ -166,4 +166,4 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # EMAIL_USE_TLS = True
 # EMAIL_HOST_USER = 'your_mailtrap_username'
 # EMAIL_HOST_PASSWORD = 'your_mailtrap_password'
-# DEFAULT_FROM_EMAIL = 'your_email@example.com'
+DEFAULT_FROM_EMAIL = 'your_email@example.com'
