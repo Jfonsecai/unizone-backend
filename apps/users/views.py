@@ -38,19 +38,23 @@ class PasswordResetRequestView(APIView):
             token = default_token_generator.make_token(user)
 
             # Crear el enlace de restablecimiento
-            reset_link = f"http://127.0.0.1:8000/api/password-reset/confirm/?token={token}&user={user.pk}"
+            reset_link = f"http://localhost:5173/password-reset/confirm/?token={token}&user={user.pk}"
+            subject = 'Recuperación de contraseña'
+            message = f'Por favor, sigue este enlace para restablecer tu contraseña: {reset_link}'
+            from_email = settings.DEFAULT_FROM_EMAIL
+            recipient_list = [email]
 
-            # Enviar el enlace de restablecimiento por correo electrónico
-            send_mail(
-                'Password Reset',
+            # Enviar el correo
+            try:
+                send_mail('Password Reset',
                 f'Click the following link to reset your password: {reset_link}',
-                settings.DEFAULT_FROM_EMAIL,  # Asegúrate de configurar el correo en settings.py
-                [email],
-                fail_silently=False,
-            )
-            return Response({"message": "Password reset email sent"}, status=status.HTTP_200_OK)
-        else:
-            return Response({"error": "Email not found"}, status=status.HTTP_404_NOT_FOUND)
+                subject, message, from_email, recipient_list)
+                print("Correo de restablecimiento enviado")
+            except Exception as e:
+                print(f"Error al enviar el correo: {e}")
+                # Enviar el enlace de restablecimiento por correo electrónico
+                
+
 
 
 class PasswordResetConfirmView(APIView):
@@ -87,4 +91,5 @@ class CustomTokenObtainPairView(TokenObtainPairView):
             'username': token['username'],  # Nombre de usuario
             'role': token['role'],  # Rol del usuario
         })
+
 
