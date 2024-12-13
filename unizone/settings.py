@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-8r9y29quj$km)+^7gbvy)b_mod%d*yzsymak#-agthorte5u7+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True # Temporal
-CSRF_TRUSTED_ORIGINS = ['http://localhost:5173',"http://127.0.0.1:5173","https://unizonevercel.vercel.app/"]  # Agrega tu frontend como origen confiable
+CSRF_TRUSTED_ORIGINS = ['http://localhost:5173',"http://127.0.0.1:5173","https://unizonevercel.vercel.app/", 'https://frontend-unizone.vercel.app/']  # Agrega tu frontend como origen confiable
 
 ALLOWED_HOSTS = ['*'] # Permite cualquier host temporalmente
 
@@ -68,7 +68,8 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",  # Agrega la URL de tu frontend
     "http://127.0.0.1:5173", 
-    "https://unizonevercel.vercel.app",   
+    "https://unizonevercel.vercel.app",
+    'https://frontend-unizone.vercel.app',   
 ]
 
 ROOT_URLCONF = 'unizone.urls'
