@@ -37,7 +37,7 @@ class PasswordResetRequestView(APIView):
             token = default_token_generator.make_token(user)
 
             # Crear el enlace de restablecimiento
-            reset_link = f"http://localhost:5173/password-reset/confirm/?token={token}&user={user.pk}"
+            reset_link = f"https://unizonevercel.vercel.app/password-reset/confirm/?token={token}&user={user.pk}"
             subject = 'Recuperación de contraseña'
             message = f'Por favor, sigue este enlace para restablecer tu contraseña: {reset_link}'
             from_email = settings.DEFAULT_FROM_EMAIL

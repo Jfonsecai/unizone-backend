@@ -26,10 +26,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Ruta local donde se almacenan lo
 SECRET_KEY = 'django-insecure-8r9y29quj$km)+^7gbvy)b_mod%d*yzsymak#-agthorte5u7+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-CSRF_TRUSTED_ORIGINS = ['http://localhost:5173',"http://127.0.0.1:5173"]  # Agrega tu frontend como origen confiable
+DEBUG = False
+CSRF_TRUSTED_ORIGINS = ['http://localhost:5173',"http://127.0.0.1:5173","https://unizonevercel.vercel.app/"]  # Agrega tu frontend como origen confiable
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*'] # Permite cualquier host temporalmente
+
 SIMPLE_JWT = {
     'USER_ID_FIELD': 'username',  # Aquí indicamos que se use 'username' en lugar de 'id'
 }
@@ -66,7 +67,8 @@ MIDDLEWARE = [
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",  # Agrega la URL de tu frontend
-    "http://127.0.0.1:5173",  
+    "http://127.0.0.1:5173", 
+    "https://unizonevercel.vercel.app/",   
 ]
 
 ROOT_URLCONF = 'unizone.urls'
@@ -167,4 +169,24 @@ EMAIL_USE_TLS = True  # Habilitamos TLS para seguridad
 EMAIL_HOST_USER = 'unizonenotreplay@gmail.com'  
 EMAIL_HOST_PASSWORD = 'ilti anes pket auoq'  
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'filename': 'django_errors.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+    },
+}
 
