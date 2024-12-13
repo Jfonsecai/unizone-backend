@@ -159,11 +159,12 @@ REST_FRAMEWORK = {
 }
 
 # Para simular correos y verlos en consola
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-# Necesario modificarlo antes de enviar a producción para usar un servidor SMPT real
-# EMAIL_HOST = 'smtp.mailtrap.io'
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
-# EMAIL_HOST_USER = 'your_mailtrap_username'
-# EMAIL_HOST_PASSWORD = 'your_mailtrap_password'
-DEFAULT_FROM_EMAIL = 'your_email@example.com'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # Usamos el backend SMTP de Django
+
+EMAIL_HOST = 'smtp.gmail.com'  # Servidor SMTP de Gmail
+EMAIL_PORT = 587  
+EMAIL_USE_TLS = True  # Habilitamos TLS para seguridad
+EMAIL_HOST_USER = 'unizonenotreplay@gmail.com'  
+EMAIL_HOST_PASSWORD = 'ilti anes pket auoq'  
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+

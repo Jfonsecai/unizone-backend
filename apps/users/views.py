@@ -31,7 +31,6 @@ class PasswordResetRequestView(APIView):
             return Response({"error": "Email is required"}, status=status.HTTP_400_BAD_REQUEST)
 
         # Lógica para restablecer la contraseña, enviar correo, etc.
-        # Ejemplo simple de enviar correo:
         user = User.objects.filter(email=email).first()
         if user:
             # Generar el token de restablecimiento
@@ -46,14 +45,21 @@ class PasswordResetRequestView(APIView):
 
             # Enviar el correo
             try:
-                send_mail('Password Reset',
-                f'Click the following link to reset your password: {reset_link}',
-                subject, message, from_email, recipient_list)
+                send_mail(
+                    subject='Password Reset',
+                    message=f'Click the following link to reset your password: {reset_link}',
+                    from_email=from_email,
+                    recipient_list=recipient_list,
+                    fail_silently=False
+                )
                 print("Correo de restablecimiento enviado")
+                return Response({'message': 'Password reset email sent successfully.'}, status=status.HTTP_200_OK)
             except Exception as e:
                 print(f"Error al enviar el correo: {e}")
-                # Enviar el enlace de restablecimiento por correo electrónico
-                
+                return Response({"error": "Failed to send reset email."}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
+        # Si el usuario no existe
+        return Response({"error": "User not found."}, status=status.HTTP_404_NOT_FOUND)
 
 
 
