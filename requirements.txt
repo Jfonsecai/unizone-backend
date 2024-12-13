@@ -13,3 +13,4 @@ setuptools==75.6.0
 django-countries==7.5
 dj_database_url==2.3.0
 weasyprint==63.1
+reportlab==4.0.4
