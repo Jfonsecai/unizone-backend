@@ -12,4 +12,4 @@ djrestframework-simplejwt==1.22.0
 setuptools==75.6.0
 django-countries==7.5
 dj_database_url==2.3.0
-weasyprint
+weasyprint==63.1
