@@ -69,6 +69,7 @@ class SimulatePurchaseView(APIView):
         # Obtener los datos
         cart = request.data.get("cart")
         username = request.data.get("username")
+        print(username)
         address = request.data.get("address")
         city = request.data.get("city")
         state = request.data.get("state")
